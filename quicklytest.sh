@@ -45,7 +45,7 @@ Preference:
   AlwaysRoutePath: true
 EOF
   fi
-  if curl -sL -O ${URLprefix}"https://raw.githubusercontent.com/xgadget-lab/nexttrace/main/nt_install.sh" || curl -sL -O ${URLprefix}"https://raw.githubusercontent.com/xgadget-lab/nexttrace/main/nt_install.sh"; then
+  if curl -sL -O ${URLprefix}"https://raw.githubusercontent.com/tsosunchia/nexttrace/main/nt_install.sh" || curl -sL -O ${URLprefix}"https://raw.githubusercontent.com/tsosunchia/nexttrace/main/nt_install.sh"; then
     bash nt_install.sh #--auto #>/dev/null
   fi
 }
@@ -98,15 +98,15 @@ checkSystemDistribution() {
 #检查脚本更新
 check_script_update() {
   if [[ ${osDistribution} == "darwin" ]]; then
-    [ "$(md5 <"${BASH_SOURCE[0]}")" == "$(curl -sL ${URLprefix}"https://raw.githubusercontent.com/xgadget-lab/nexttrace/main/quicklytest.sh" | md5)" ] && return 1 || return 0
+    [ "$(md5 <"${BASH_SOURCE[0]}")" == "$(curl -sL ${URLprefix}"https://raw.githubusercontent.com/tsosunchia/nexttrace/main/quicklytest.sh" | md5)" ] && return 1 || return 0
   else
-    [ "$(md5sum "${BASH_SOURCE[0]}" | awk '{print $1}')" == "$(md5sum <(curl -sL ${URLprefix}"https://raw.githubusercontent.com/xgadget-lab/nexttrace/main/quicklytest.sh") | awk '{print $1}')" ] && return 1 || return 0
+    [ "$(md5sum "${BASH_SOURCE[0]}" | awk '{print $1}')" == "$(md5sum <(curl -sL ${URLprefix}"https://raw.githubusercontent.com/tsosunchia/nexttrace/main/quicklytest.sh") | awk '{print $1}')" ] && return 1 || return 0
   fi
 }
 
 #更新脚本
 update_script() {
-  if curl -sL -o "${BASH_SOURCE[0]}" ${URLprefix}"https://raw.githubusercontent.com/xgadget-lab/nexttrace/main/quicklytest.sh" || curl -sL -o "${BASH_SOURCE[0]}" ${URLprefix}"https://raw.githubusercontent.com/xgadget-lab/nexttrace/main/quicklytest.sh"; then
+  if curl -sL -o "${BASH_SOURCE[0]}" ${URLprefix}"https://raw.githubusercontent.com/tsosunchia/nexttrace/main/quicklytest.sh" || curl -sL -o "${BASH_SOURCE[0]}" ${URLprefix}"https://raw.githubusercontent.com/tsosunchia/nexttrace/main/quicklytest.sh"; then
     echo -e "${Info} quickylytest.sh更新完成，正在重启脚本..."
     exec bash "${BASH_SOURCE[0]}"
   else
@@ -126,11 +126,11 @@ ask_update_script() {
 
 check_mode() {
 
-  if [[ $expert != True ]] ; then
+  if [[ $expert != True ]]; then
     TRACECMD="nexttrace"
-    return;
+    return
   fi
-  
+
   echo -e "${Info} Nexttrace目前支持以下三种协议发起Traceroute请求:\n1.ICMP\n2.TCP(速度最快,但部分节点不支持)\n3.UDP\n(IPv6暂只支持ICMP模式)" && read -r -p "输入数字以选择:" node
 
   while [[ ! "${node}" =~ ^[1-3]$ ]]; do

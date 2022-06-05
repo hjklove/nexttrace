@@ -95,15 +95,15 @@ ask_if() {
 #检查脚本更新
 check_script_update() {
   if [[ ${osDistribution} == "darwin" ]]; then
-    [ "$(md5 <"${BASH_SOURCE[0]}")" == "$(curl -sL ${URLprefix}"https://raw.githubusercontent.com/xgadget-lab/nexttrace/main/nt_install.sh" | md5)" ] && return 1 || return 0
+    [ "$(md5 <"${BASH_SOURCE[0]}")" == "$(curl -sL ${URLprefix}"https://raw.githubusercontent.com/tsosunchia/nexttrace/main/nt_install.sh" | md5)" ] && return 1 || return 0
   else
-    [ "$(md5sum "${BASH_SOURCE[0]}" | awk '{print $1}')" == "$(md5sum <(curl -sL ${URLprefix}"https://raw.githubusercontent.com/xgadget-lab/nexttrace/main/nt_install.sh") | awk '{print $1}')" ] && return 1 || return 0
+    [ "$(md5sum "${BASH_SOURCE[0]}" | awk '{print $1}')" == "$(md5sum <(curl -sL ${URLprefix}"https://raw.githubusercontent.com/tsosunchia/nexttrace/main/nt_install.sh") | awk '{print $1}')" ] && return 1 || return 0
   fi
 }
 
 #更新脚本
 update_script() {
-  if curl -sL -o "${BASH_SOURCE[0]}" ${URLprefix}"https://raw.githubusercontent.com/xgadget-lab/nexttrace/main/nt_install.sh" || curl -sL -o "${BASH_SOURCE[0]}" ${URLprefix}"https://raw.githubusercontent.com/xgadget-lab/nexttrace/main/nt_install.sh"; then
+  if curl -sL -o "${BASH_SOURCE[0]}" ${URLprefix}"https://raw.githubusercontent.com/tsosunchia/nexttrace/main/nt_install.sh" || curl -sL -o "${BASH_SOURCE[0]}" ${URLprefix}"https://raw.githubusercontent.com/tsosunchia/nexttrace/main/nt_install.sh"; then
     red "nt_install.sh更新完成，正在重启脚本..."
     exec bash "${BASH_SOURCE[0]}" --auto
   else
