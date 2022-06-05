@@ -42,7 +42,11 @@ Token:
   LeoMoeAPI: NextTraceDemo
   IPInfo: ""
 Preference:
-  AlwaysRoutePath: true
+  NoRDNS: false
+  DataOrigin: LEOMOEAPI
+  AlwaysRoutePath: false
+  TablePrintDefault: false
+  TraceMethod: ""
 EOF
   fi
   if curl -sL -O ${URLprefix}"https://raw.githubusercontent.com/tsosunchia/nexttrace/main/nt_install.sh" || curl -sL -O ${URLprefix}"https://raw.githubusercontent.com/tsosunchia/nexttrace/main/nt_install.sh"; then
